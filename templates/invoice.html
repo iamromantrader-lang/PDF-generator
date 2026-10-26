@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Счёт {{ invoice_id }}</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 28px 36px;
+      color: #1f2937;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 3px solid #1d4ed8;
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      margin: 0 0 4px;
+      font-size: 26px;
+      color: #1d4ed8;
+    }
+    .muted { color: #6b7280; }
+    .meta { text-align: right; }
+    .meta strong { font-size: 16px; }
+    .block { margin-bottom: 22px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    th {
+      background: #eff6ff;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    td.num, th.num { text-align: right; }
+    tfoot td {
+      font-weight: 700;
+      border-bottom: none;
+      padding-top: 12px;
+    }
+    .total-row td {
+      font-size: 16px;
+      color: #1d4ed8;
+    }
+    .notes {
+      margin-top: 28px;
+      padding: 12px 14px;
+      background: #f9fafb;
+      border-left: 4px solid #93c5fd;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>Счёт на оплату</h1>
+      <div class="muted">Документ сформирован автоматически</div>
+    </div>
+    <div class="meta">
+      <div><strong>№ {{ invoice_id }}</strong></div>
+      <div>Дата: {{ date }}</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <strong>Плательщик</strong><br>
+    {{ customer_name }}<br>
+    <span class="muted">{{ customer_address }}</span>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Наименование</th>
+        <th class="num">Кол-во</th>
+        <th class="num">Цена</th>
+        <th class="num">Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.item_name }}</td>
+        <td class="num">{{ item.quantity }}</td>
+        <td class="num">{{ item.price | money }} {{ currency }}</td>
+        <td class="num">{{ item.amount | money }} {{ currency }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr class="total-row">
+        <td colspan="3">Итого</td>
+        <td class="num">{{ total | money }} {{ currency }}</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  {% if notes %}
+  <div class="notes">
+    <strong>Примечание:</strong> {{ notes }}
+  </div>
+  {% endif %}
+</body>
+</html>

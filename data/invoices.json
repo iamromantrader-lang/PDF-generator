@@ -1,0 +1,38 @@
+[
+  {
+    "invoice_id": "INV-2001",
+    "date": "2026-09-03",
+    "currency": "RUB",
+    "customer_name": "Петрова Анна Сергеевна",
+    "customer_address": "г. Санкт-Петербург, Невский пр., 28",
+    "notes": "Оплата картой",
+    "items": [
+      {"item_name": "Онлайн-курс", "quantity": 1, "price": 9900},
+      {"item_name": "Сертификат", "quantity": 1, "price": 500}
+    ]
+  },
+  {
+    "invoice_id": "INV-2002",
+    "date": "2026-09-18",
+    "currency": "RUB",
+    "customer_name": "ИП Кузнецов П.А.",
+    "customer_address": "г. Екатеринбург, ул. Малышева, 36",
+    "notes": "Безналичный расчёт",
+    "items": [
+      {"item_name": "Аудит процессов", "quantity": 1, "price": 42000},
+      {"item_name": "Отчёт", "quantity": 1, "price": 7000}
+    ]
+  },
+  {
+    "invoice_id": "INV-2003",
+    "date": "2026-10-01",
+    "currency": "RUB",
+    "customer_name": "ООО «Рассвет»",
+    "customer_address": "г. Краснодар, ул. Красная, 15",
+    "notes": "Счёт-оферта",
+    "items": [
+      {"item_name": "Разработка модуля", "quantity": 1, "price": 85000},
+      {"item_name": "Тестирование", "quantity": 8, "price": 2500}
+    ]
+  }
+]

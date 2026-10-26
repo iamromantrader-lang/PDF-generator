@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Чек {{ invoice_id }}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px 32px;
+      color: #111827;
+      font-size: 12.5px;
+    }
+    .ticket {
+      max-width: 420px;
+      margin: 0 auto;
+      border: 1px dashed #9ca3af;
+      padding: 20px 22px 16px;
+    }
+    h1 {
+      margin: 0 0 2px;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .center { text-align: center; color: #4b5563; }
+    .line {
+      border-top: 1px dashed #d1d5db;
+      margin: 12px 0;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    td { padding: 4px 0; vertical-align: top; }
+    td.num { text-align: right; white-space: nowrap; }
+    .total td {
+      padding-top: 10px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .footer {
+      margin-top: 16px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <div class="ticket">
+    <h1>Чек</h1>
+    <div class="center">{{ invoice_id }} · {{ date }}</div>
+    <div class="line"></div>
+    <div><strong>{{ customer_name }}</strong></div>
+    <div class="center" style="text-align:left; margin-top:4px;">{{ customer_address }}</div>
+    <div class="line"></div>
+    <table>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.item_name }} × {{ item.quantity }}</td>
+        <td class="num">{{ item.amount | money }} {{ currency }}</td>
+      </tr>
+      {% endfor %}
+      <tr class="total">
+        <td>Итого</td>
+        <td class="num">{{ total | money }} {{ currency }}</td>
+      </tr>
+    </table>
+    {% if notes %}
+    <div class="line"></div>
+    <div>{{ notes }}</div>
+    {% endif %}
+    <div class="footer">Спасибо за покупку</div>
+  </div>
+</body>
+</html>
